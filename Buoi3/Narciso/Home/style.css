@@ -6,13 +6,16 @@
   letter-spacing: 0.1em;
 }
 
-/* p {
-  font-weight: 300;
-  font-family: "Helvetica Neue", "Arial", "sans-serif";
-  letter-spacing: 0.1em; */
+p {
+  font-size: 12px;
+  margin: 20px 20px;
 }
+
+a {
+  font-size: 12px;
+}
+
 #logo {
-  text-align: center;
   height: 50px;
 }
 
@@ -22,25 +25,45 @@
 
 h1 {
   text-align: center;
-  letter-spacing: 20px;
+  letter-spacing: 18px;
+  font-size: 2em;
 }
+
+h2 {
+  letter-spacing: 4px;
+  font-size: 1.2em;
+  line-height: 1.2;
+  padding: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
 nav {
+  display: block;
   text-align: center;
+}
+nav #group-of-navlinks {
+  display: flex;
+  justify-content: center;
 }
 nav a {
   text-decoration: none;
   line-height: 26px;
-  display: inline-block;
   font-family: "Helvetica Neue", "Arial", "sans-serif";
   font-weight: 300;
   font-style: normal;
-  text-transform: lowercase;
+  text-transform: capitalize;
   letter-spacing: 0.1em;
-  font-size: 13px;
+  font-size: 15px;
   color: #000;
   padding: 10px;
 }
-
+/* 
+h2 {
+text-decoration: ;
+} */
 #intro {
   background-color: #f5f5f5;
 }
@@ -57,9 +80,24 @@ th,
 td {
   border: whitesmoke 1px solid;
   border-collapse: collapse;
-  padding: 5px 30px;
+  padding: 5px 10px;
+  font-size: 12px;
 }
+/* 
+#table {
+  size: 70%;
+} */
 
 #table .fragances {
   background: linear-gradient(to right, #ffeeee, #e5e5be);
 }
+
+/* .table-img {
+  background-image: url(/Narciso/nar-img/nar-home-1.jpeg);
+  background-color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 20px;
+  width: 100px;
+} */
