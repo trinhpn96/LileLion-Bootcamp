@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+   list-style: none;
+   border-bottom: 1px solid #ccc;
+
+}
+
+li {
+    display: inline-block;
+}
+
+li:not(:first-child) {
+    margin-left: 16px;
+}
+
+a {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    padding: 16px 32px;
+}
+
+a:hover {
+    background-color: rgb(76, 124, 106);
+    color: azure;
+    cursor: grab;
+}
+
+

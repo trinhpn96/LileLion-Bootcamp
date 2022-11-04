@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+.grid-container {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   gap: 10px 15px;
+}
+
+.grid-item {
+   font-size: 40px;
+    border: 1px solid #ccc;
+    padding: 50px;
+    background-color: mintcream;
+}

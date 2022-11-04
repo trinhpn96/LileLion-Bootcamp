@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    border-bottom: solid 1px #ccc;
+    gap: 16px;
+}
+
+li {
+    border: solid 1px #ccc;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    padding: 16px 32px;
+}
+
+a:hover {
+    background-color: rgb(83, 108, 100);
+    color: white;
+}
