@@ -9,7 +9,6 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.5;
   font-size: 15px;
-  padding: 8px 16px;
 }
 
 ul {
@@ -27,9 +26,10 @@ p {
 }
 
 #main {
-  display: block;
+  position: relative;
   padding: 8px 16px;
 }
+
 /* Navigation Bar */
 
 .navbar {
@@ -68,36 +68,41 @@ p {
 }
 
 /* banner */
+
 .banner {
   position: relative;
-  padding-bottom: 0;
-  margin-bottom: 0;
-  display: block;
+  /* padding-bottom: 0;
+  margin-bottom: 0; */
 }
 
 .banner img {
   width: 100%;
-  letter-spacing: 4px;
   padding-bottom: 0;
   margin-bottom: 0;
 }
 
+
 .banner-box {
-  margin: 10px 0px;
+    margin-top: 16px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: block;
+    letter-spacing: 4px;
 }
+
 
 .banner-heading {
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 36px;
   line-height: 1.5;
-  letter-spacing: 4px;
+  
   font-weight: 400;
-  color: #f1f1f1;
+  color: #fff;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 10px 0;
 }
 
 .banner-heading > span {
@@ -123,11 +128,17 @@ p {
 .h2 {
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 24px;
+  font-weight: 400;
   line-height: 36px;
+
   margin: 10px 0px;
   padding: 16px 0px;
-  font-weight: 400;
+  
   border-bottom: 1px solid #ccc;
+}
+
+.h2.border-bottom {
+  border-color: #f1f1f1;
 }
 
 h3 {
@@ -286,11 +297,11 @@ h3 {
 }
 
 #footer .contact-link {
-  text-decoration: underline;
-  background-color: transparent;
+    text-decoration: underline;
+    background-color: transparent
 }
 
 #footer .contact-link:hover {
-  color: #4caf50;
-  cursor: pointer;
+    color: #4CAF50;
+    cursor: pointer;
 }
