@@ -11,35 +11,38 @@
 
     </head>
     <body>
-        <div id="main">
+        <!-- Navigation -->
+        <nav id="navbar">
+            <a href="" class="owner navlink">
+                Rosie P.
+            </a>
+            <div class="navlist">
+                <a href="#about" class="navlink">
+                    About
+                </a>
+                <a href="#skills" class="navlink">
+                    Skills
+                </a>
+                <a href="" class="navlink">
+                    Recent Projects
+                </a>
+                <a href="#contact" class="navlink">
+                    Contact
+                </a>
+            </div>
+        </nav>
+
+        <main>
             <div id="page1">
-                <div id="navbar">
-                    <div class="owner">
-                        Rosie P.
-                    </div>
-                    <div class="navlist">
-                        <a href="#" class="navlink">
-                            Portfolio
-                        </a>
-                        <a href="#about" class="navlink">
-                            About
-                        </a>
-                        <a href="#contact" class="navlink">
-                            Contact
-                        </a>
-                    </div>
-                </div>
-
-                <br>
-
                 <div id="avatar">
-                    <img src="./port-img/ava.jpeg" alt="ava" class="ava">
+                    <img src="/port-img/IMG_3402.JPG" alt="ava" class="ava">
                 </div>
 
                 <h1>I'm Rosie!
                     <br>
                     Glad to see you!
                 </h1>
+
                 <!-- Introduction -->
                 <div id="about">
                     <p>
@@ -49,65 +52,155 @@
                         resources such as Udemy, W3Schools and recently a
                         Bootcamp at
                         LikeLion.
-                    </p>
-
-                    <p>I'm interested in solving problems with
+                        <br>
+                        <br>
+                        I'm interested in solving problems with
                         technology, and I believe that technology
                         can help to
                         simplify
                         our
-                        daily tasks. My goal is to become a <b> Fullstack Developer </b>.
+                        daily tasks. My goal is to become a <b> Fullstack
+                            Developer
+                        </b>.
                         As
                         this
                         is a long
                         journey so I am taking single step at a time .
                     </p>
 
-                    <p>Drop a like or contact me via: </p>
-                </div>
+                    <!-- End Page -->
+                    <div class="contact">
 
-
-                <!-- Skill
-        <div id="skills">
-            <h2>Skills</h2>
-            <ul>
-              <li>HTML</li>
-              <li>Javascript (On-going) </li>
-              <li>CSS</li>
-              <li>ReactJS (On-going)</li>
-            </ul>
-          </div> -->
-                <!-- Contact -->
-                <div id="contact">
-
-                    <ul>
-                        <li>
-                            <a href="https://www.facebook.com/TrinhPham0110/"
-                                class="facebook">
-                                <ion-icon class="fab" name="logo-facebook"></ion-icon>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/trinhpn96"
-                                class="github">
-                                <ion-icon class="fab" name="logo-github"></ion-icon>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="https://www.linkedin.com/in/rosie-pham-7a3617140/"
-                                class="linkedin">
-                                <ion-icon class="fab" name="logo-linkedin"></ion-icon>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- <a class="btn btn-primary btn-lg btn-floating"
-                style="background-color: #ac2bac;"
-                href="#!"
-                role="button"><i class="fab fa-instagram"></i></a> -->
+                        <ul>
+                            <li>
+                                <a
+                                    href="https://www.facebook.com/TrinhPham0110/"
+                                    class="facebook">
+                                    <ion-icon class="fab" name="logo-facebook"></ion-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/trinhpn96"
+                                    class="github">
+                                    <ion-icon class="fab" name="logo-github"></ion-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/rosie-pham-7a3617140/"
+                                    class="linkedin">
+                                    <ion-icon class="fab" name="logo-linkedin"></ion-icon>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Skill -->
+            <div id="page2">
+
+                <div id="skills">
+                    <h2>Skills:</h2>
+                    <div class="skill">
+                        <div class="skill-name">HTML:</div>
+                        <div class="skill-bar">
+                            <div class="skill-per" per="90%" style="max-width:
+                                90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-name">CSS:</div>
+                        <div class="skill-bar">
+                            <div class="skill-per" per="80%" style="max-width:
+                                80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-name">Javascript:</div>
+                        <div class="skill-bar">
+                            <div class="skill-per" per="60%" style="max-width:
+                                60%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-name">ReactJS (on-going):</div>
+                        <div class="skill-bar">
+                            <div class="skill-per" per="40%" style="max-width:
+                                40%"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- Contact -->
+
+            <div id="page3">
+                <div id="contact-me">
+                    <h2>Contact: </h2>
+                    <p> Drop a like or leave me a message!</p>
+                    <div id="form">
+                        <div class="container">
+                            <form action="/action_page.php">
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="fname">First Name</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" id="fname"
+                                            name="firstname" placeholder="Your
+                                            name..">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="lname">Last Name</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="text" id="lname"
+                                            name="lastname" placeholder="Your
+                                            last name..">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="country">Country</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <select id="country" name="country">
+                                            <option value="australia">Australia</option>
+                                            <option value="canada">Canada</option>
+                                            <option value="usa">USA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="subject">Subject</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <textarea id="subject" name="subject"
+                                            placeholder="Write something.."
+                                            style="height:200px"></textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <input type="submit" value="Submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
         <script type="module"
             src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule

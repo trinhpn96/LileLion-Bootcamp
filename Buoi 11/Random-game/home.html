@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./modal.css">
+        <script src="https://kit.fontawesome.com/842777e4e9.js"
+            crossorigin="anonymous"></script>
+        <title>Random Game</title>
+    </head>
+    <body>
+        <div class="container">
+            <header class="header">
+                <h1>Random Game</h1>
+                <input class="restart-button" type="button" value="Restart Game">
+            </header>
+
+            <div class="score">
+                <p class="score-player">Player: 0</p>
+                <p class="score-computer">Computer: 0</p>
+            </div>
+
+            <div class="choices">
+                <i id="scissor" class="choice fa-regular fa-hand-scissors fa-5x
+                fa-shake"></i>
+                <i id="paper" class="choice fa-regular fa-hand-paper fa-5x
+                    fa-beat"></i>
+                <i id="rock" class="choice fa-regular fa-hand-back-fist fa-5x
+                    fa-shake"></i>
+            </div>
+
+            <div class="modal">
+                <div class="modal-content">
+                    <h1>YOU WINNN !!</h1>
+                    <i class="choice fa-regular fa-hand-paper fa-5x fa-spin"></i>
+                    <p>Computer choose paper</p>
+                </div>
+            </div>
+        </div>
+        <script src="./main.js"></script>
+    </body>
+</html>

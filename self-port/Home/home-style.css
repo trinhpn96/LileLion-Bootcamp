@@ -1,0 +1,266 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/Home/vector-taiwan-sky-lantern-festival.jpeg);
+
+  opacity: 0.9;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  /* overflow: hidden; */
+}
+#main {
+  display: flex;
+}
+/* Navigation Bar  */
+
+.navigation {
+  position: flex;
+  width: 70px;
+  height: 350px;
+  background: #f1f1f1;
+  opacity: 0.8;
+  border-radius: 35px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  margin-top: 20px;
+  margin-left: 88%;
+}
+
+.navigation ul {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 15px;
+  margin-left: 88%;
+
+}
+
+.navigation ul li {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  list-style: none;
+  z-index: 1;
+}
+
+.navigation ul li a {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  color:#fb6200;
+  font-weight: 500;
+}
+
+.navigation ul li a .icon {
+  display: block;
+  position: relative;
+  text-align: center;
+  line-height: 75px;
+}
+
+.navigation ul li a .icon i {
+  font-size: 24px;
+}
+
+.navigation ul li a .title {
+position: absolute;
+top: 50%;
+left: 110px;
+background: #f1f1f1;
+transform: translateY(-50%);
+padding: 5px 10px;
+border-radius: 6px;
+transition: 0.5s;
+box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+opacity: 0;
+visibility: hidden;
+}
+
+.navigation ul li:hover a .title {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-25px) translateY(-50%);
+  cursor: pointer;
+}
+
+.navigation ul li:hover a .title::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  background: #fb6200;
+  left: -8px;
+  top: 46%;
+  transform: rotate(45deg) translateY(-50%);
+  border-radius: 2px;
+}
+
+.navigation ul .indicator {
+position: absolute;
+left: 0;
+width: 70px;
+height: 70px;
+transition: 0.5s;
+
+}
+
+
+/* Background animation */
+
+#background {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transform: perspective(700px);
+}
+
+.bg-box {
+  position: absolute;
+  transform-style: preserve-3d;
+  top: 90px;
+}
+
+.bg-box .bg-cube {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  animation: animateCube 20s linear infinite;
+}
+
+@keyframes animateCube {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.bg-box .bg-cube div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-style: preserve-3d;
+}
+
+.bg-box .bg-cube div span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(#fba111, #fb6200, #c3300f);
+  transform: rotateY(calc(90deg * var(--i))) translateZ(50px);
+}
+
+.bg-box .bg-cube .bg-top {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+  background: #b22708;
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+.bg-box .bg-cube .bg-top::before {
+  position: absolute;
+  content: "";
+  width: 800px;
+  height: 600px;
+  background: #ec9909f7;
+  filter: blur(200px);
+  transform: translateZ(-600px);
+  box-shadow: 0 0 120px rgba(224, 97, 19, 0.801),
+    0 0 200px rgba(214, 116, 40, 0.853), 0 0 300px rgb(205, 147, 31),
+    0 0 400px rgba(241, 174, 30, 0.8), 0 0 500px rgb(240, 221, 47),
+    0 0 600px rgb(243, 247, 125);
+}
+
+.text {
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 50vw;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: aliceblue;
+
+  top: -45%;
+  left: 60%;
+  transform: translateX(-75%);
+  margin-top: 40%;
+}
+
+.pre-text {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 30vw;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: aliceblue;
+
+  top: -34%;
+  left: 17%;
+  letter-spacing: 0.2em;
+  transform: translateX(-60%);
+  margin-top: 50%;
+}
+
+h1 {
+  position: absolute;
+  display: inline-block;
+  font-family: studiofeixen, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 78px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+h3 {
+  display: flex;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  padding: 10px;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 100;
+  font-size: 20px;
+  opacity: 0.7;
+}

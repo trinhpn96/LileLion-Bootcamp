@@ -81,24 +81,22 @@ p {
   margin-bottom: 0;
 }
 
-
 .banner-box {
-    margin-top: 16px;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    display: block;
-    letter-spacing: 4px;
+  margin-top: 16px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  letter-spacing: 4px;
 }
-
 
 .banner-heading {
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 36px;
   line-height: 1.5;
-  
+
   font-weight: 400;
   color: #fff;
 
@@ -133,7 +131,7 @@ p {
 
   margin: 10px 0px;
   padding: 16px 0px;
-  
+
   border-bottom: 1px solid #ccc;
 }
 
@@ -189,13 +187,12 @@ h3 {
 }
 
 /* About section */
+
 #about {
   padding: 32px 16px;
 }
 
 #about-details {
-  /* margin: 0px 0px 16px;
-  padding: 0px 8px; */
   filter: grayscale(75%);
 }
 
@@ -225,7 +222,9 @@ h3 {
   background-color: #ccc;
   cursor: pointer;
 }
-/* Contact */
+
+/* Contact section */
+
 #contact form {
   display: block;
   margin-top: 0em;
@@ -275,7 +274,8 @@ h3 {
   cursor: pointer;
 }
 
-/* Image break  */
+/* Image break */
+
 #img-end {
   padding: 0.15px 16px;
 }
@@ -297,11 +297,11 @@ h3 {
 }
 
 #footer .contact-link {
-    text-decoration: underline;
-    background-color: transparent
+  text-decoration: underline;
+  background-color: transparent;
 }
 
 #footer .contact-link:hover {
-    color: #4CAF50;
-    cursor: pointer;
+  color: #4caf50;
+  cursor: pointer;
 }
