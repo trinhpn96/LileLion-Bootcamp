@@ -5,25 +5,18 @@
 
 let musicContainer = document.getElementById("music-container");
 let playBtn = document.getElementById("play");
-let prevBtn = document.getElementById("prev");
-let nextBtn = document.getElementById("next");
 let audio = document.getElementById("audio");
-let progress = document.getElementById("progress");
-let progressContainer = document.getElementById("progress-container");
 let title = document.getElementById("tilte");
 let cover = document.getElementById("cover");
 
 // 1. RENDER SONG:
 //List
 let songs = ["How You Like That", "Kill This Love", "SOLO", "WHISTLE"];
-
 //index
 let songIndex = 3;
 
-//load songs
-loadSong(songs[songIndex]);
-
 //function loadsong
+loadSong(songs[songIndex]);
 function loadSong(song) {
   title.innerText = song;
   cover.src = `./music/image/${song}.jpeg`;
@@ -73,6 +66,9 @@ window.addEventListener("keydown", (event) => {
 });
 
 // 3.PREVIOUS & NEXT SONG
+let prevBtn = document.getElementById("prev");
+let nextBtn = document.getElementById("next");
+
 // previous song function
 prevBtn.addEventListener("click", playPrevSong);
 function playPrevSong(event) {
@@ -99,6 +95,9 @@ function playNextSong(event) {
 }
 
 // 4. SONG PROGRESS
+let progress = document.getElementById("progress");
+let progressContainer = document.getElementById("progress-container");
+
 // add event timeupdate
 audio.addEventListener("timeupdate", updateProgress);
 audio.addEventListener("ended", playNextSong);
