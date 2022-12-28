@@ -1,9 +1,9 @@
 import React from "react";
 
-const TrashIcon = () => {
+const TrashIcon = (props) => {
   return (
     <svg
-      className="w-6 h-6"
+      {...props}
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

@@ -41,6 +41,14 @@ const app = express(); //Create Server
 app.use(express.json()); // parse into json format
 app.use(cors());
 
+//Middle ware: function with ".use()":
+app.use((req, res, next) => {
+  setTimeout(() => {
+    next();
+  }, 500);
+});
+
+//ROUTES
 app.use("/products", productRoute);
 app.use("/posts", postRoute);
 

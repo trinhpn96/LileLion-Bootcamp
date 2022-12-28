@@ -1,9 +1,66 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import GlobalSpinner from "../../../components/common/GlobalSpinner";
 import { EditIcon, TrashIcon } from "../../../components/common/icons";
+import useDebounce from "../../../hooks/useDebounce";
+
+const DeleteProductModal = (id) => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (productId) => {
+      return axios.delete(`/products/${productId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+
+  return (
+    <div>
+      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+      <label htmlFor={id} className="modal cursor-pointer">
+        <label className="modal-box relative" htmlFor="">
+          <div className="text-center">
+            {/* Warning icon */}
+            <svg
+              aria-hidden="true"
+              className="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+
+            {/* Title */}
+            <h3 className="mb-6 text-lg font-normal text-gray-500 dark:text-gray-400">
+              Are you sure you want to delete this product?
+            </h3>
+
+            {/* Action Button */}
+            <div className="flex justify-center gap-4">
+              <button className="btn btn-error text-white">
+                Yes, I'm sure
+              </button>
+              <label htmlFor="delete-modal" className="btn btn-outline">
+                No, cancel
+              </label>
+            </div>
+          </div>
+        </label>
+      </label>
+    </div>
+  );
+};
 
 const AdminProductsAction = ({ searchString, setSearchString }) => {
   return (
@@ -23,6 +80,9 @@ const AdminProductsAction = ({ searchString, setSearchString }) => {
 };
 
 const AdminProductsTable = ({ isLoading, data }) => {
+// const [id, setId] = useState{""}
+
+
   if (isLoading) return <GlobalSpinner />;
 
   const {
@@ -79,11 +139,23 @@ const AdminProductsTable = ({ isLoading, data }) => {
                         <EditIcon />
                       </Link>
                     </div>
+
+
                     {/* Delete Button */}
                     <div className="tooltip tooltip-warning" data-tip="Delete">
-                      <button className="btn btn-sm btn-circle btn-warning ">
+                      <label
+                        htmlFor="my-modal-4"
+                        className="btn btn-sm btn-circle btn-warning"
+                      >
                         <TrashIcon />
-                      </button>
+                      </label>
+
+                      {/* <button
+                        className=" "
+                        onClick={() => mutation.mutate(item.id)}
+                      >
+                        <TrashIcon />
+                      </button> */}
                     </div>
                   </div>
                 </th>
@@ -91,6 +163,9 @@ const AdminProductsTable = ({ isLoading, data }) => {
             ))}
           </tbody>
         </table>
+
+        {/* Modal */}
+        <DeleteProductModal id="delete-modal" />
       </div>
     </div>
   );
@@ -98,9 +173,10 @@ const AdminProductsTable = ({ isLoading, data }) => {
 
 const AdminProducts = () => {
   const [searchString, setSearchString] = useState("ip");
+  const debouncedSearch = useDebounce(searchString, 800); //useDebounce : params: state, delay time
 
   const { data, isLoading } = useQuery({
-    queryKey: ["products", { q: searchString }],
+    queryKey: ["products", { q: debouncedSearch }],
     queryFn: () =>
       axios.get("/products/search", { params: { q: searchString } }),
   });
