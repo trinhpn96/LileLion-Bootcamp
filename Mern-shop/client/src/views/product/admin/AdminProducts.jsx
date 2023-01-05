@@ -1,26 +1,30 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import GlobalSpinner from "../../../components/common/GlobalSpinner";
 import { EditIcon, TrashIcon } from "../../../components/common/icons";
-import useDebounce from "../../../hooks/useDebounce";
+import Loader from "../../../components/common/icons/Loader";
+import useSearchProducts from "../../../hooks/products/useSearchproducts";
 
-const DeleteProductModal = (id) => {
+import { deleteProductById } from "../../../services/productService";
+
+const DeleteProductModal = ({ id }) => {
   const queryClient = useQueryClient();
+  const ref = useRef();
 
   const mutation = useMutation({
-    mutationFn: (productId) => {
-      return axios.delete(`/products/${productId}`);
-    },
+    mutationFn: (productId) => deleteProductById(productId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
+      console.log(ref.current);
+      ref.current.checked = false;
     },
   });
 
   return (
     <div>
-      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+      <input type="checkbox" ref={ref} id={id} className="modal-toggle" />
       <label htmlFor={id} className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
           <div className="text-center">
@@ -46,12 +50,18 @@ const DeleteProductModal = (id) => {
               Are you sure you want to delete this product?
             </h3>
 
-            {/* Action Button */}
+            {/* Action Buttons */}
             <div className="flex justify-center gap-4">
-              <button className="btn btn-error text-white">
-                Yes, I'm sure
+              <button
+                className="btn btn-error text-white"
+                onClick={() => mutation.mutate(id)}
+              >
+                <div className="flex items-center gap-2">
+                  {mutation.isLoading && <Loader />}
+                  <span>Yes, I'm sure</span>
+                </div>
               </button>
-              <label htmlFor="delete-modal" className="btn btn-outline">
+              <label htmlFor={id} className="btn btn-outline">
                 No, cancel
               </label>
             </div>
@@ -80,8 +90,7 @@ const AdminProductsAction = ({ searchString, setSearchString }) => {
 };
 
 const AdminProductsTable = ({ isLoading, data }) => {
-// const [id, setId] = useState{""}
-
+  const [id, setId] = useState(null);
 
   if (isLoading) return <GlobalSpinner />;
 
@@ -92,6 +101,7 @@ const AdminProductsTable = ({ isLoading, data }) => {
   return (
     <div>
       <div className="overflow-x-auto w-full">
+        {/* Table */}
         <table className="table w-full">
           {/* <!-- Header --> */}
           <thead>
@@ -111,10 +121,7 @@ const AdminProductsTable = ({ isLoading, data }) => {
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={item.imageUrl}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        <img src={item.imageUrl} alt={item.title} />
                       </div>
                     </div>
                     <div>
@@ -134,28 +141,21 @@ const AdminProductsTable = ({ isLoading, data }) => {
                     <div className="tooltip tooltip-info" data-tip="Edit">
                       <Link
                         to={`${item.id}/edit`}
-                        className="btn btn-sm btn-circle btn-info"
+                        className="btn btn-sm btn-circle btn-info hover:opacity-80"
                       >
                         <EditIcon />
                       </Link>
                     </div>
 
-
                     {/* Delete Button */}
                     <div className="tooltip tooltip-warning" data-tip="Delete">
                       <label
-                        htmlFor="my-modal-4"
-                        className="btn btn-sm btn-circle btn-warning"
+                        htmlFor={item.id}
+                        className="btn btn-sm btn-circle btn-warning hover:opacity-90"
+                        onClick={() => setId(item.id)}
                       >
                         <TrashIcon />
                       </label>
-
-                      {/* <button
-                        className=" "
-                        onClick={() => mutation.mutate(item.id)}
-                      >
-                        <TrashIcon />
-                      </button> */}
                     </div>
                   </div>
                 </th>
@@ -165,33 +165,28 @@ const AdminProductsTable = ({ isLoading, data }) => {
         </table>
 
         {/* Modal */}
-        <DeleteProductModal id="delete-modal" />
+        <DeleteProductModal id={id} />
       </div>
     </div>
   );
 };
 
 const AdminProducts = () => {
-  const [searchString, setSearchString] = useState("ip");
-  const debouncedSearch = useDebounce(searchString, 800); //useDebounce : params: state, delay time
-
-  const { data, isLoading } = useQuery({
-    queryKey: ["products", { q: debouncedSearch }],
-    queryFn: () =>
-      axios.get("/products/search", { params: { q: searchString } }),
-  });
+  const [searchString, setSearchString] = useState("");
+  const { data, isLoading } = useSearchProducts(searchString);
+  //useDebounce : params: state, delay time
 
   return (
     <div>
       {/* Container */}
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Layout */}
-        <div className="">
+        <div className="py-6">
           <AdminProductsAction
             searchString={searchString}
             setSearchString={setSearchString}
           />
-
+          {/* Table */}
           <AdminProductsTable isLoading={isLoading} data={data} />
         </div>
       </div>

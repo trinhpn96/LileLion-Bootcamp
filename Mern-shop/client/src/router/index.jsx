@@ -5,7 +5,6 @@ import AdminProducts from "../views/product/admin/AdminProducts";
 import Home from "../views/Home";
 import ProductDetail from "../views/product/ProductDetail";
 import Products from "../views/product/Products";
-import "../index.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import AdminProductsNew from "../views/product/admin/AdminProductsNew";
 import AdminProductsEdit from "../views/product/admin/AdminProductsEdit";

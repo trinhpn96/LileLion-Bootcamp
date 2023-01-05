@@ -23,7 +23,7 @@ const Home = () => {
               </div>
 
               {/* Shop button */}
-              <Link to="/products" className="btn glass btn-lg">
+              <Link to="/products" className="btn glass btn-md">
                 Shop Now
               </Link>
             </div>

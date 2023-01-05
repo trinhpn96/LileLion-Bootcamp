@@ -1,55 +1,73 @@
-import React from "react";
-import FormRow from "../../../components/common/icons/FormRow";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { toast} from "react-toastify";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { toast } from "react-toastify";
 import AdminProductsForm from "./AdminProductsForm";
-
-const schema = yup
-  .object({
-    title: yup.string().required(),
-    catgory: yup
-      .string()
-      .oneOf(["smartphones", "laptop", "ipad"], "Select a catgory")
-      .required(),
-    price: yup.number().required().typeError("Must be a number"),
-    imageUrl: yup.string().url().required(),
-    description: yup.string().required(),
-  })
-  .required();
+import { productSchema } from "../../../validation/productSchema";
+import { createProduct } from "../../../services/productService";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../../config/firebase";
+import { useState } from "react";
 
 const AdminProductsNew = () => {
+  const [isFileUploading, setIsFileUploading] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(productSchema),
   });
 
   const mutation = useMutation({
-    mutationFn: (newProduct) => {
-      return axios.post("/products/add", newProduct);
-    },
+    mutationFn: (newProduct) => createProduct(newProduct),
     onSuccess: () => {
       reset();
       toast.success("🦄 Woww..Added successfully!");
     },
   });
 
-  const onSubmit = (data) => mutation.mutate(data); //submit data to server and saved.
+  const onSubmit = (data) => {
+    // mutation.mutate(data)
+    const file = data.image[0];
+    const category = data.category;
+
+    // Upload file to the object 'images/mountains.jpg'
+    const storageRef = ref(storage, `products/${category}/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        switch (snapshot.state) {
+          case "running":
+            setIsFileUploading(true);
+            break;
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        // Upload completed successfully, now we can get the download URL
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setIsFileUploading(false);
+          mutation.mutate({ ...data, imageUrl: downloadURL });
+        });
+      }
+    );
+  };
 
   return (
     <AdminProductsForm
       onSubmit={handleSubmit(onSubmit)}
       register={register}
-      isLoading={mutation.isLoading}
+      isLoading={mutation.isLoading || isFileUploading}
       errors={errors}
-      btnLabel="Add Product"
+      btnLabel="Create Product"
+      watch={watch}
     />
   );
 };

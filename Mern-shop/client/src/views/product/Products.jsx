@@ -21,7 +21,7 @@ const ProductsFilter = ({ category, setCategory }) => {
           {/* Category Filter */}
           <div className="form-control w-full md:max-w-xs">
             <label className="label">
-              <span className="label-text">Category</span>
+              <span className="label-text font-semibold">Category</span>
             </label>
             <select
               className="select select-bordered"
@@ -41,17 +41,20 @@ const ProductsFilter = ({ category, setCategory }) => {
 
 const ProductsCard = ({ id, title, imageUrl, price, category }) => {
   return (
-    <Link to={`/products/${id}`} className="block overflow-hidden group">
+    <Link
+      to={`/products/${id}`}
+      className="block overflow-hidden group  shadow-lg rounded-2xl shadow-fuchsia-800/50"
+    >
       <LazyLoad height={180} threshold={0.95}>
         <img
           src={imageUrl}
           alt={title}
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-125 rounded-2xl "
         />
       </LazyLoad>
 
-      <div className="relative pt-3 bg-white">
-        <h3 className="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
+      <div className="relative p-3 bg-white">
+        <h3 className="text-base text-stone-600 font-semibold group-hover:underline group-hover:text-amber-600 group-hover:underline-offset-4 shadow-cyan-500/50">
           {title}
         </h3>
         <div className="mt-1.5 flex items-center justify-between text-gray-900">

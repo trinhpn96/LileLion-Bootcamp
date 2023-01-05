@@ -1,14 +1,15 @@
-import React from "react";
 import FormRowError from "../../../components/common/FormRowError";
 import FormRow from "../../../components/common/icons/FormRow";
 import Loader from "../../../components/common/icons/Loader";
 
 const AdminProductsForm = ({
+  watch,
   onSubmit,
   register,
   errors,
   isLoading,
   btnLabel,
+  isDirty = true,
 }) => {
   return (
     <div>
@@ -61,15 +62,23 @@ const AdminProductsForm = ({
                 <FormRowError error={errors.price} />
               </FormRow>
 
-              {/* ImageURl */}
-              <FormRow label="Image Url" className="col-span-full">
+              {/* Image */}
+              <FormRow label="Image">
                 <input
-                  type="text"
-                  placeholder="Type here"
-                  className="input input-bordered w-full"
-                  {...register("imageUrl")}
+                  type="file"
+                  className="file-input file-input-bordered w-full "
+                  {...register("image")}
                 />
-                <FormRowError error={errors.imageUrl} />
+
+                {/* Preview Image */}
+                {watch("imageUrl") && (
+                  <img
+                    className="mt-4"
+                    src={watch("imageUrl")}
+                    alt={watch("title")}
+                  />
+                )}
+                <FormRowError error={errors.image} />
               </FormRow>
 
               {/* Description */}
@@ -87,7 +96,7 @@ const AdminProductsForm = ({
             <button
               type="submit"
               className="btn btn-primary"
-              disabled={isLoading}
+              disabled={isLoading || !isDirty}
             >
               <div className="flex items-center gap-2">
                 {isLoading && <Loader />}
